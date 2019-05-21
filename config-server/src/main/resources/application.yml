@@ -1,0 +1,26 @@
+server:
+  port: 8764
+spring:
+  security:
+    basic:
+      enabled: true
+    user:
+      name: root
+      password: booszy
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://git.coding.net/yirenyishi/springcloud-config-profile
+          searchPaths: '{application}'
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    appname: config-server
+
